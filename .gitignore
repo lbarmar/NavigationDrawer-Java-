@@ -1,15 +1,28 @@
+# Archivos generados por Android Studio
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+.idea/*
+
+# Archivos y directorios generados por Gradle
+.gradle/
+/build/
+/captures/
+/externalNativeBuild/
+/cxx/
+/bin/
+/out/
+.gradle-wrapper.jar
+/gradle-wrapper.properties
+/.gradle
+
+# Archivos específicos del sistema
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+Thumbs.db
+
+# Archivos de logs
+*.log
+
+# Otros archivos temporales
 local.properties
+
+# Archivos específicos del entorno de desarrollo
+deploymentTargetSelector
