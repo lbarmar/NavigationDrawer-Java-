@@ -1,6 +1,6 @@
 # Archivos generados por Android Studio
 *.iml
-.idea/*
+.idea/
 
 # Archivos y directorios generados por Gradle
 .gradle/
@@ -23,6 +23,3 @@ Thumbs.db
 
 # Otros archivos temporales
 local.properties
-
-# Archivos específicos del entorno de desarrollo
-deploymentTargetSelector
