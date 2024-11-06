@@ -2,6 +2,10 @@
 
     <!-- Base application theme for Android >=12 -->
     <style name="Base.Theme.NavigationDrawerJava" parent="Theme.Material3.DayNight">
+
+<!--        Add this item to disable splash screen-->
+<!--        <item name="android:windowIsTranslucent">true</item>-->
+
         <item name="android:windowSplashScreenBackground">@color/white</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/cat</item>
         <item name="android:windowSplashScreenAnimationDuration">2000</item>
