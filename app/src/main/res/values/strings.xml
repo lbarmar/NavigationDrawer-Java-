@@ -4,4 +4,6 @@
     <string name="close_drawer">Cerrar menú</string>
     <string name="header_image_desc">profile image</string>
     <string name="username">Username</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
