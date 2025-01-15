@@ -118,6 +118,9 @@ public class MainActivity extends AppCompatActivity {
             if (menuItem.getItemId() == R.id.nav_home) {
                 navController.navigate(R.id.homeFragment); // Navegar al fragmento de inicio
             }
+            else if (menuItem.getItemId() == R.id.nav_paint) {
+                navController.navigate(R.id.paintFragment); // Navegar al fragmento car
+            }
             binding.drawerLayout.closeDrawers(); // Cerrar el menú
             return true;
         });

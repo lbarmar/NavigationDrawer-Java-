@@ -3,4 +3,8 @@
     <item
         android:id="@+id/nav_home"
         android:title="Home" />
+
+    <item
+        android:id="@+id/nav_paint"
+        android:title="Paint" />
 </menu>
