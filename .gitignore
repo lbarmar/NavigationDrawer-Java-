@@ -1,6 +1,11 @@
 # Archivos generados por Android Studio
 *.iml
 .idea/
+.idea/compiler.xml
+.idea/misc.xml
+.idea/workspace.xml
+.idea/libraries/
+.idea/modules.xml
 
 # Archivos y directorios generados por Gradle
 .gradle/
@@ -17,9 +22,38 @@
 # Archivos específicos del sistema
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Archivos de logs
 *.log
 
-# Otros archivos temporales
+# Archivos de configuración locales
 local.properties
+.env
+*.keystore
+*.jks
+
+# Archivos temporales y de respaldo
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.old
+
+# Archivos generados por el sistema operativo o IDEs
+*.orig
+*.rej
+
+# Archivos de configuración específicos de inspecciones
+inspectionProfiles/profiles_settings.xml
+
+# Archivos de ejecución local
+.idea/runConfigurations/
+
+# Exclusión de archivos que pueden ser sensibles
+*.key
+*.pem
+*.crt
+*.p12
+*.der
