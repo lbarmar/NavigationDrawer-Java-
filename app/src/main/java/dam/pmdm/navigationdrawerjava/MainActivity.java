@@ -1,23 +1,33 @@
 package dam.pmdm.navigationdrawerjava;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 import dam.pmdm.navigationdrawerjava.databinding.ActivityMainBinding;
+import dam.pmdm.navigationdrawerjava.databinding.GuideBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle toggle;
     private ActivityMainBinding binding;
+    private GuideBinding guideBinding;
     private NavController navController;
+
+    private Boolean needToStartGuide = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        guideBinding = binding.includeLayout;
         setContentView(binding.getRoot());
 
         // Obtener el NavController desde el NavHostFragment
@@ -41,6 +52,49 @@ public class MainActivity extends AppCompatActivity {
         // Configurar Toolbar
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        initializeGuide();
+    }
+
+    private void initializeGuide() {
+        guideBinding.exitGuide.setOnClickListener(this::onExitGuide);
+
+        if (needToStartGuide){
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            guideBinding.guideLayout.setVisibility(View.VISIBLE);
+
+            ObjectAnimator scaleX = ObjectAnimator.ofFloat(
+                    guideBinding.pulseImage, "scaleX", 1f, 0.5f);
+            ObjectAnimator scaleY = ObjectAnimator.ofFloat(
+                    guideBinding.pulseImage, "scaleY", 1f, 0.5f);
+            ObjectAnimator fadeIn = ObjectAnimator.ofFloat(
+                    guideBinding.textStep, "alpha", 0f, 1f);
+
+            scaleX.setRepeatCount(3);
+            scaleY.setRepeatCount(3);
+            AnimatorSet animatorSet = new AnimatorSet();
+            animatorSet.play(scaleX).with(scaleY).before(fadeIn);
+            animatorSet.setDuration(1000);
+            animatorSet.start();
+            animatorSet.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if (needToStartGuide) {
+                        super.onAnimationEnd(animation);
+                        binding.drawerLayout.open();
+                        guideBinding.pulseImage.setVisibility(View.GONE);
+                        guideBinding.textStep.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+        }
+    }
+
+    private void onExitGuide(View view) {
+        needToStartGuide = false;
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        guideBinding.guideLayout.setVisibility(View.GONE);
+        binding.drawerLayout.close();
     }
 
     private void configureToggleMenu() {
