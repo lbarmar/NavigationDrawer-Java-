@@ -16,6 +16,12 @@ public class ProfileFragment extends Fragment {
         // Inicializar binding
         binding = FragmentProfileBinding.inflate(inflater, container, false);
 
+
+        binding.videoView.setVideoPath("android.resource://"
+                + requireActivity().getPackageName()+ "/"
+                + R.raw.agua);
+        binding.videoView.start();
+
         // Retornar la vista raíz
         return binding.getRoot();
     }
