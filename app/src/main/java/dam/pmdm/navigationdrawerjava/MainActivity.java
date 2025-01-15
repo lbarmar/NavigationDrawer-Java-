@@ -38,10 +38,9 @@ public class MainActivity extends AppCompatActivity {
         // Configurar la navegación
         configureNavigation();
 
-        // Configurar el icono del menú en la ActionBar
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+        // Configurar Toolbar
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void configureToggleMenu() {
@@ -49,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         toggle = new ActionBarDrawerToggle(
                 this,
                 binding.drawerLayout,
+                binding.toolbar,
                 R.string.open_drawer,
                 R.string.close_drawer
         );
